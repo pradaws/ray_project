@@ -8,7 +8,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
-import pageObjects.ExcelUtils;
+
+import page_Objects.ExcelUtils;
+
 
 public class TestCase {
 
@@ -24,11 +26,11 @@ public class TestCase {
 
 	}
 	@Test
-	void login() throws IOException {
+	void login() throws IOException, InterruptedException {
 
 		String File= System.getProperty("user.dir")+("\\test-data\\LoginData.xlsx");
 		int rows= ExcelUtils.getRowCount(File, "Sheet1");
-		for(int r=1;r<rows;r++) {
+		for(int r=1;r<=rows;r++) {
 			String emailid= ExcelUtils.getCellData(File, "Sheet1", r, 0);
 			String pwd= ExcelUtils.getCellData(File, "Sheet1", r, 1);
 			String parentWindowHandle = driver.getWindowHandle();
@@ -41,13 +43,13 @@ public class TestCase {
 				if(!handle.equals(parentWindowHandle)) 
 				{
 					driver.switchTo().window(handle);
-					break;
+					
 				}
 			}
 			driver.findElement(By.xpath("//input[@placeholder='EMAIL']")).sendKeys(emailid);
 			driver.findElement(By.name("password")).sendKeys(pwd);
 			driver.findElement(By.xpath("//button[@type='submit']")).click();
-
+			
 
 
 			//validation
@@ -58,19 +60,22 @@ public class TestCase {
 				System.out.println("Test is Passed");
 				ExcelUtils.setCellData(File, "Sheet1", r,2, "pass");
 				ExcelUtils.fillGreenColor(File, "Sheet1", r,2);
-				driver.findElement(By.xpath("//button[normalize-space()='Select Plan']")).click();
-				Set<String> all = driver.getWindowHandles();
+				//driver.findElement(By.xpath("//button[normalize-space()='Select Plan']")).click();
 				driver.switchTo().window(parentWindowHandle);
+			    
+				
 				
 			}
 			else {
 				System.out.println("Test is failed");
 				ExcelUtils.setCellData(File, "Sheet1", r, 2, "fail");
-				ExcelUtils.fillRedColor(File, "Sheet1", r, 2);
+			    ExcelUtils.fillRedColor(File, "Sheet1", r, 2);
 			}
-
-           
+			
+			
 		}
+		
+		
 	}
 //	@AfterTest
 //	void close() {

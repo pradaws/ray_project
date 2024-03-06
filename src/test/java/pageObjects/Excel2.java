@@ -14,7 +14,7 @@ import java.io.FileInputStream;
 	public class Excel2 {
 		@Test
 		void excelread() throws IOException   {
-			FileInputStream file=new FileInputStream(System.getProperty("user.dir")+"\\test-data\\data.xlsx");
+			FileInputStream file=new FileInputStream(System.getProperty("user.dir")+"\\test-data\\LoginData.xlsx");
 			XSSFWorkbook workbook=new XSSFWorkbook(file);
 			XSSFSheet sheet=workbook.getSheet("Sheet1");//workbook.getSheetAt(0);
 			

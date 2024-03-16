@@ -8,7 +8,7 @@ public class ReadConfig {
 
 	Properties pro;
 	public ReadConfig() {
-		File f =new File("C:\\Users\\white\\eclipse-workspace\\Your_Store_Automation\\target\\Config.properties");
+		File f =new File("C:\\Users\\white\\git\\Orbit\\target\\Config.properties");
 
 		try {
 			FileInputStream fis=new FileInputStream(f);//convert file data into reading mode

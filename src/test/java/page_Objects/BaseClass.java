@@ -48,10 +48,10 @@ public class BaseClass {
 	     driver.get(url);
 	
 	}
-	@AfterClass
-	   public void closeApplication() {
-	       driver.close();
-	   }
+//	@AfterClass
+//	   public void closeApplication() {
+//	       driver.close();
+//	   }
 
 	
 	}
